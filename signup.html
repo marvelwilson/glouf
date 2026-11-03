@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create a merchant account · Glouf</title>
+<script>(function(){var V='1792600489';try{fetch('assets/version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){var m=/[?&]r=([^&#]+)/.exec(location.search);if(d&&d.v&&d.v!==V&&(!m||m[1]!==d.v)){var q=location.search.replace(/([?&])r=[^&#]*&?/,'$1').replace(/[?&]$/,'');location.replace(location.pathname+(q?q+'&':'?')+'r='+d.v+location.hash)}}).catch(function(){})}catch(e){}})();</script>
+<link rel="icon" type="image/png" href="assets/logo-64.png">
+<link rel="apple-touch-icon" href="assets/logo-192.png">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css?v=1792600065">
+</head>
+<body>
+<div class="auth">
+  <div class="auth-art">
+    <a href="index.html" class="logo"><span style="display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#fff"><img src="assets/logo-64.png" width="30" height="30" alt="" style="display:block"></span>Glouf</a>
+    <div><h2>Protect your products from copies.</h2><p>Create your account and go straight to your dashboard. You only submit documents when you're ready to go live.</p>
+    <ol>
+      <li>Create your merchant account</li>
+      <li>Log in and set up your dashboard</li>
+      <li>Add your products and stores, and try test codes</li>
+      <li>Click "Go live" and submit your documents</li>
+      <li>We review them and alert you when you're live</li>
+    </ol></div>
+    <p style="font-size:.85rem">CAC RC: 8037834</p>
+  </div>
+  <div class="auth-form"><div class="box">
+    <h1>Create your account</h1><p class="lead">Already registered? <a href="login.html" style="color:var(--blue);font-weight:700">Log in</a></p>
+    <form id="su">
+      <div class="field"><label for="b">Business name</label><input id="b" required autocomplete="organization" placeholder="e.g. Pure Dairy Ltd"></div>
+      <div class="row2"><div class="field"><label for="n">Your full name</label><input id="n" required autocomplete="name"></div>
+      <div class="field"><label for="ph">Phone</label><input id="ph" type="tel" required autocomplete="tel"></div></div>
+      <div class="field"><label for="e">Work email</label><input id="e" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="i">Industry</label><select id="i" required><option value="">Select your industry</option><option>Pharmaceuticals</option><option>Food &amp; beverage</option><option>Dairy</option><option>Cosmetics &amp; skincare</option><option>Wines &amp; spirits</option><option>Auto parts</option><option>Electronics</option><option>Agro-chemicals</option><option>Fashion</option><option>Other</option></select></div>
+      <div class="field"><label for="p">Password <small>(at least 8 characters)</small></label><input id="p" type="password" minlength="8" required autocomplete="new-password"></div>
+      <label class="check"><input type="checkbox" required> I'm authorised to register products for this business.</label>
+      <p class="err" id="err"></p>
+      <button class="btn btn-blue" type="submit">Create account and continue</button>
+    </form>
+    <p class="note"><b>Prototype:</b> your account is saved in this browser only until the Glouf backend is connected.</p>
+  </div></div>
+</div>
+<script src="assets/store.js?v=1792600065"></script>
+<script>
+document.getElementById('su').onsubmit=function(e){e.preventDefault();
+  var v=function(id){return document.getElementById(id).value};
+  try{GloufStore.createMerchant({business:v('b'),name:v('n'),phone:v('ph'),email:v('e'),industry:v('i').replace('&amp;','&'),password:v('p')});location.href='dashboard.html?welcome=1'}
+  catch(err){document.getElementById('err').textContent=err.message}};
+</script>
+</body>
+</html>
